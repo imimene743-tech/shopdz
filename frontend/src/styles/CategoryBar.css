@@ -1,0 +1,64 @@
+/* src/styles/CategoryBar.css */
+
+.category-scroll {
+    display: flex;
+    overflow-x: auto; /* Permet de défiler à droite/gauche sur mobile */
+    padding: 20px 10px;
+    gap: 25px;
+    justify-content: center; /* Aligné au centre sur PC */
+    background-color: #fff;
+    scrollbar-width: none; /* Cache la barre de scroll sur Firefox */
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none; /* Cache la barre de scroll sur Chrome/Safari */
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    transition: transform 0.2s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+}
+
+.category-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f3e5f5; /* Mauve très clair */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Style quand la catégorie est sélectionnée */
+.category-item.active .category-circle {
+    background-color: #9c27b0; /* Ton mauve principal */
+    border-color: #7b1fa2;
+    box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3);
+}
+
+.category-item.active .category-icon {
+    filter: brightness(0) invert(1); /* Rend l'icône blanche si besoin */
+}
+
+.category-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    text-align: center;
+}
+
+.category-item.active .category-name {
+    color: #9c27b0;
+    font-weight: bold;
+}

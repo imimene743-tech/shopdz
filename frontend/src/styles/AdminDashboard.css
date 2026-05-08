@@ -1,0 +1,193 @@
+/* Conteneur Principal */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar (Barre Latérale) */
+.admin-sidebar {
+    width: 260px;
+    background-color: #212529;
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.admin-sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #0d6efd;
+}
+
+.admin-sidebar button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border: none;
+    background: transparent;
+    color: #adb5bd;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.admin-sidebar button:hover {
+    background-color: #343a40;
+    color: white;
+}
+
+.admin-sidebar button.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Zone de Contenu */
+.admin-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.admin-header h1 {
+    margin-bottom: 30px;
+    color: #343a40;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+/* Formulaire d'Ajout/Modification */
+.admin-form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.admin-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #495057;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.admin-form input, 
+.admin-form select, 
+.admin-form textarea {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-form textarea {
+    width: 100%;
+    height: 80px;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-save {
+    background-color: #198754;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Tableaux */
+.table-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background-color: #f1f3f5;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f3f5;
+    vertical-align: middle;
+}
+
+.low-stock {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Boutons d'Action dans la table */
+.btn-edit {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Badges de statut (Commandes) */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-badge.en_attente { background-color: #fff3cd; color: #856404; }
+.status-badge.livré { background-color: #d1e7dd; color: #0f5132; }

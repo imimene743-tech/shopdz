@@ -1,0 +1,61 @@
+/* Admin.css */
+
+.admin-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #f9f6ff; /* blanc-violet clair */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.admin-container h2 {
+  text-align: center;
+  color: #6a0dad; /* mauve Jumia */
+  margin-bottom: 20px;
+}
+
+.product-form input,
+.product-form textarea,
+.product-form select,
+.product-form button {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.product-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.add-btn-admin {
+  background-color: #6a0dad;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-btn-admin:hover {
+  background-color: #55008b;
+}
+
+.image-preview {
+  margin-bottom: 15px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  border-radius: 8px;
+}

@@ -1,0 +1,292 @@
+/* src/styles/Header.css */
+
+.main-header {
+    background-color: #9c27b0; 
+    padding: 0.8rem 2rem;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Modifié --- */
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permet aux éléments de descendre si pas de place */
+    gap: 10px;       /* Ajoute un petit espace entre les blocs */
+}
+
+
+
+
+/* Logo */
+.logo-link {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Barre de recherche (Modifiée pour le wrapper) --- */
+/* --- Modifié --- */
+.search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 250px; /* Empêche la barre de devenir trop minuscule */
+    max-width: 500px;
+    margin: 0.5rem 1rem; /* Réduit un peu les marges pour gagner de l'espace */
+    order: 2; /* Optionnel : force l'ordre d'affichage */
+}
+
+
+
+.search-form {
+    display: flex;
+    background-color: white;
+    border-radius: 25px;
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0 1.2rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+}
+
+.search-button {
+    background-color: #7b1fa2;
+    color: white;
+    border: none;
+    padding: 0 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #6a1b8a;
+}
+
+/* --- Système de Suggestions Intuitives --- */
+.suggestions-dropdown {
+    position: absolute;
+    top: 110%; /* Juste en dessous de la barre */
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 1001;
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    gap: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f8f0fb; /* Rappel de ta couleur mauve */
+}
+
+.suggestion-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-name {
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.suggestion-price {
+    font-size: 0.85rem;
+    color: #9c27b0; /* Prix en mauve */
+    font-weight: bold;
+}
+
+/* --- Groupe de navigation --- */
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    position: relative;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.login-btn {
+    background-color: #7b1fa2;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+}
+
+/* Badge Panier */
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    background-color: #ff5252;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #9c27b0;
+}
+
+/* Dropdown Menu Utilisateur */
+.user-menu-container {
+    position: relative;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    min-width: 210px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    padding: 0.9rem 1.2rem;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f0fb;
+}
+
+.admin-link-item {
+    color: #9c27b0;
+    font-weight: 600;
+}
+
+.logout-item {
+    color: #d32f2f !important;
+    font-weight: 500;
+}
+
+
+
+
+
+
+/* --- Ajouts pour le mode Mobile --- */
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0.8rem 1rem; /* Réduit le padding sur les côtés */
+    }
+
+    .header-container {
+        justify-content: center; /* Centre le logo et les boutons */
+    }
+
+    .logo-link {
+        font-size: 1.3rem; /* Réduit un peu la taille du texte Shop DZ */
+    }
+
+    .search-wrapper {
+        min-width: 100%; /* La barre de recherche prend toute la largeur sur mobile */
+        margin: 10px 0;
+        order: 3; /* Place la recherche sous le logo et le menu */
+    }
+
+    .nav-group {
+        order: 2;
+        gap: 0.5rem;
+    }
+
+    .icon-btn span {
+        display: none; /* Cache les textes (Panier, Connexion) pour ne garder que les icônes sur mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-link span {
+        font-size: 1.2rem;
+    }
+    
+    .suggestion-item {
+        padding: 8px; /* Réduit la taille des suggestions pour mobile */
+    }
+}
