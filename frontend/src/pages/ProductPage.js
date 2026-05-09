@@ -14,6 +14,8 @@ import { notifySuccess, notifyError } from '../utils/notify';
 import { colors } from '../utils/theme';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { UPLOADS_URL } from '../utils/config';
+
 
 const ProductPage = ({ onAddToCart }) => {
   const { id } = useParams();
@@ -29,9 +31,23 @@ const ProductPage = ({ onAddToCart }) => {
   if (!product) return <p style={{ textAlign: 'center', padding: '2rem' }}>Chargement...</p>;
 
   // Construction de l'URL de l'image (identique à ton ProductCard)
-  const imageUrl = product.image
-    ? `http://localhost:5000/uploads/${product.image}`
-    : 'https://via.placeholder.com/500x400?text=Shop+DZ';
+const imageUrl = product.image
+  ? (product.image.startsWith('http') ? product.image : `${UPLOADS_URL}/${product.image}`)
+  : 'https://via.placeholder.com/500x400?text=Shop+DZ';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div style={containerStyle}>
