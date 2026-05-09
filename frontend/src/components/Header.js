@@ -7,6 +7,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';
 import '../styles/Header.css';
 
+
+import { API_URL } from '../utils/config';
+
+
+
+
 const Header = ({ cartCount = 0, onCartClick, user, onLogout }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -23,8 +29,37 @@ const Header = ({ cartCount = 0, onCartClick, user, onLogout }) => {
     const getSuggestions = async () => {
       if (searchTerm.trim().length > 0) {
         try {
-          // Appel à ton API de recherche (vérifie bien le port 5000)
-          const res = await axios.get(`http://localhost:5000/api/products/search?search=${searchTerm}`);
+
+
+
+
+
+
+          const res = await axios.get(`${API_URL}/products/search?search=${searchTerm}`);
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
           setSuggestions(res.data.slice(0, 5)); // On garde les 5 premiers
           setShowSuggestions(true);
         } catch (err) {
