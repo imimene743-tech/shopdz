@@ -5,14 +5,14 @@ import { colors } from '../utils/theme';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
+import { UPLOADS_URL } from '../utils/config';
 const ProductCard = ({ product, onAddToCart, onToggleFavorite, isFavorite }) => {
   const navigate = useNavigate();
 
   // 🔹 Transforme le nom du fichier en URL complète pour le backend uploads
-  const imageUrl = product.image
-    ? `http://localhost:5000/uploads/${product.image}`
-    : 'https://via.placeholder.com/300x200?text=Shop+DZ';
+const imageUrl = product.image
+  ? (product.image.startsWith('http') ? product.image : `${UPLOADS_URL}/${product.image}`)
+  : 'https://via.placeholder.com/300x200?text=Shop+DZ';
 
   const cardStyle = {
     backgroundColor: colors.white,
