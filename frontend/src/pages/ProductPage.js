@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getProduct, getCategories } from '../services/api';
+
+
+
+
+import { getProduct } from '../services/api';
+
+
+
+
+
 import { notifySuccess, notifyError } from '../utils/notify';
 import { colors } from '../utils/theme';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
