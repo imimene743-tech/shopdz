@@ -6,6 +6,21 @@ import { getProducts, getCategories } from '../services/api';
 import axios from 'axios'; // Assure-toi qu'axios est importé
 import toast from 'react-hot-toast';
 
+
+
+import { API_URL } from '../utils/config';
+
+
+
+
+
+
+
+
+
+
+
+
 const ProductList = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -29,8 +44,27 @@ const ProductList = ({ onAddToCart }) => {
       if (searchQuery) {
         // Appelle ta fonction searchProducts du backend
         // Vérifie l'URL de ton API (ici j'utilise l'exemple standard)
-        response = await axios.get(`http://localhost:5000/api/products/search?search=${searchQuery}`);
-      } else {
+
+
+
+      
+      
+const response = await axios.get(`${API_URL}/products/search?search=${searchQuery}`);
+      
+      
+      
+      } 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      else {
         // Appelle ta fonction getProducts habituelle
         response = await getProducts();
       }
