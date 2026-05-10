@@ -90,16 +90,24 @@ exports.createOrder = async (req, res) => {
 
     await connection.beginTransaction();
 
-    const [cartItems] = await connection.query(`
-      SELECT cart.*, products.price, products.name, products.stock
-      FROM cart
-      JOIN products ON cart.product_id = products.id
-      WHERE cart.user_id = ?
-    `, [userId]);
+const { items } = req.body;
 
-    if (cartItems.length === 0) {
-      return res.status(400).json({ message: "Votre panier est vide" });
-    }
+if (!items || items.length === 0) {
+  return res.status(400).json({ message: "Votre panier est vide" });
+}
+
+const productIds = items.map(i => i.product_id);
+const [cartItems] = await connection.query(`
+  SELECT products.id as product_id, products.price, products.name, products.stock
+  FROM products
+  WHERE products.id IN (?)
+`, [productIds]);
+
+// Ajouter les quantités depuis le frontend
+cartItems.forEach(item => {
+  const frontItem = items.find(i => i.product_id === item.product_id);
+  item.quantity = frontItem ? frontItem.quantity : 1;
+});
 
     let totalProduits = 0;
     for (const item of cartItems) {
