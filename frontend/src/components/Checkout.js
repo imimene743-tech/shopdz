@@ -1,11 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
+
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 640);
+  React.useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return isMobile;
+};
 import { createOrder, getWilayas } from '../services/api';
 import { colors } from '../utils/theme';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = ({ cart, totalAmount, onOrderSuccess, user }) => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   // 🔹 Récupération directe du token depuis le stockage local
   const token = localStorage.getItem('shopdzToken');
@@ -86,7 +97,7 @@ const Checkout = ({ cart, totalAmount, onOrderSuccess, user }) => {
         ) : (
           <form onSubmit={handleOrder} style={formStyle}>
 
-            <div style={rowStyle}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '10px' }}>
               <input
                 type="text"
                 placeholder="Prénom"
@@ -197,17 +208,17 @@ const Checkout = ({ cart, totalAmount, onOrderSuccess, user }) => {
 // =================== STYLES (Inchangés) ===================
 
 const containerStyle = { minHeight: '100vh', backgroundColor: '#f8f5fb', padding: '30px 15px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' };
-const cardStyle = { width: '100%', maxWidth: '850px', background: '#fff', borderRadius: '16px', boxShadow: '0 6px 18px rgba(0,0,0,0.08)', padding: '25px' };
+const cardStyle = { width: '100%', maxWidth: '850px', background: '#fff', borderRadius: '16px', boxShadow: '0 6px 18px rgba(0,0,0,0.08)', padding: '20px' };
 const titleStyle = { color: colors.mauve.primary, borderBottom: `2px solid ${colors.mauve.light}`, paddingBottom: '10px', marginBottom: '20px' };
 const formStyle = { display: 'flex', flexDirection: 'column', gap: '15px' };
-const rowStyle = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' };
-const inputStyle = { padding: '12px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem', outline: 'none' };
+// rowStyle is now dynamic in the component
+const inputStyle = { padding: '12px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem', outline: 'none', width: '100%', boxSizing: 'border-box', fontFamily: 'inherit' };
 const summaryStyle = { background: colors.gray.light, padding: '18px', borderRadius: '12px', marginTop: '10px' };
 const productRowStyle = { display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.95rem' };
 const priceRow = { display: 'flex', justifyContent: 'space-between', marginBottom: '8px' };
 const totalFinalStyle = { display: 'flex', justifyContent: 'space-between', fontSize: '1.2rem', fontWeight: 'bold', color: colors.mauve.primary };
 const hrStyle = { border: 'none', borderTop: '1px solid #ddd', margin: '12px 0' };
-const buttonsRowStyle = { display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '10px' };
+const buttonsRowStyle = { display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '10px', flexDirection: 'column' };
 const btnStyle = { flex: 1, minWidth: '220px', padding: '15px', background: '#9c27b0', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1.05rem' };
 const btnSecondaryStyle = { flex: 1, minWidth: '220px', padding: '15px', background: '#eee', color: '#333', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1.05rem' };
 const emptyStyle = { textAlign: 'center', padding: '40px 20px' };
