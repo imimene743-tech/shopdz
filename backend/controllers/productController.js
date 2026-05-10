@@ -203,7 +203,7 @@ const addProduct = async (req, res)=> {
 
 
 
-const imageName = req.file ? req.file.path : null;
+const imageUrl = req.file.path;
 
 
 
