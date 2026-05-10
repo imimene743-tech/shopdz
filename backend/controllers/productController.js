@@ -188,7 +188,12 @@ const getProductById = async (req, res) => {
 
 
 // 🔹 3. Ajouter un produit (Compatible adminRoutes -> addProduct)
-const addProduct = async (req, res) => {
+const addProduct = async (req, res)=> {
+
+
+
+
+
   try {
     const { name, description, price, promotion_price, stock, category_id } = req.body;
     
@@ -196,7 +201,14 @@ const addProduct = async (req, res) => {
       return res.status(400).json({ message: "Veuillez uploader une photo." });
     }
 
-    const imageName = req.file.filename; 
+
+
+const imageName = req.file ? req.file.path : null;
+
+
+
+
+
 
     const query = `
       INSERT INTO products (name, description, price, promotion_price, stock, category_id, image) 

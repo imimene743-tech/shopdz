@@ -1,26 +1,21 @@
-const multer = require("multer");
-const path = require("path");
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
 
-// Configuration du stockage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Assure-toi que ce dossier existe à la racine du backend
-  },
-  filename: (req, file, cb) => {
-    // On crée un nom unique : date-nom_origine
-    cb(null, Date.now() + "-" + file.originalname);
-  }
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Filtrer pour n'accepter que les images
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image/")) {
-    cb(null, true);
-  } else {
-    cb(new Error("Le fichier doit être une image !"), false);
-  }
-};
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'shopdz_products',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+  },
+});
 
-const upload = multer({ storage: storage, fileFilter: fileFilter });
+const upload = multer({ storage });
 
 module.exports = upload;

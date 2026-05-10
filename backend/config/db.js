@@ -7,6 +7,9 @@ const db = mysql.createPool({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'ecommerce_dz',
   port: process.env.DB_PORT || 3306,
+  
+  charset: 'utf8mb4'
+
 });
 
 module.exports = db;
