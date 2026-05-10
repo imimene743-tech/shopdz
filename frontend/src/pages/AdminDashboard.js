@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+import { API_URL, getImageUrl } from '../utils/config';
+
 import '../styles/AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -27,7 +30,7 @@ const [promotionPrice, setPromotionPrice] = useState('');
 
     // 1. Création de l'instance API de base
     const api = axios.create({
-        baseURL: 'http://localhost:5000/api'
+  baseURL: API_URL
     });
 
     // 2. Intercepteur pour le token
@@ -244,7 +247,7 @@ setPromotionPrice(p.promotion_price || '');
                                             <tr key={p.id}>
                                                 <td>
                                                     {p.image ? (
-                                                        <img src={`http://localhost:5000/uploads/${p.image}`} alt={p.name} width="50" style={{borderRadius: '5px'}}/>
+                                                        <img src={getImageUrl(p.image)}alt={p.name} width="50" style={{borderRadius: '5px'}}/>
                                                     ) : (
                                                         "Pas d'image"
                                                     )}
