@@ -26,7 +26,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import './App.css';
 
 
-// ✅ On passe les props à ProductList même dans l'alias
+// On passe les props à ProductList même dans l'alias
 const Home = ({ onAddToCart }) => <ProductList onAddToCart={onAddToCart} />;
 // Pages temporaires
 //const Home = () => <ProductList />;
@@ -71,7 +71,7 @@ function App() {
 
   // Gestion du panier
 const handleAddToCart = async (product) => {
-    // 1. ✅ Mise à jour visuelle immédiate (Interface utilisateur)
+    // 1. Mise à jour visuelle immédiate (Interface utilisateur)
     setCartItems(prev => {
       const existingItem = prev.find(item => item.id === product.id);
       if (existingItem) {
@@ -176,18 +176,19 @@ const handleAddToCart = async (product) => {
 
 
 
-           <Route
-              path="/checkout"
-              element={
-                user ? (
-                  <CheckoutPage
-                    cart={cartItems}
-                    user={user}
-                    totalAmount={cartItems.reduce(
-                      (total, item) => total + item.price * item.quantity,
-                      0
-                    )}
-                  />
+          <Route
+  path="/checkout"
+  element={
+    user ? (
+      <CheckoutPage
+        cart={cartItems}
+        user={user}
+        totalAmount={cartItems.reduce(
+          (total, item) => total + (item.promotion_price || item.price) * item.quantity,
+          0
+        )}
+        onOrderSuccess={() => setCartItems([])}
+      />
                 ) : (
                   <Navigate to="/login" replace />
                 )
