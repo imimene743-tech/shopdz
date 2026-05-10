@@ -32,7 +32,7 @@ const app = express();
 // 2. MIDDLEWARES (DOIVENT ÊTRE AVANT LES ROUTES)
 // C'est ici que l'on autorise ton frontend localhost:3000
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://shopdz-ten.vercel.app'],
+  origin: ['http://localhost:3000', 'https://shopdz-ten.vercel.app','https://shopdz-akku.vercel.app'],
   credentials: true,
 }));
 
