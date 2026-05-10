@@ -15,7 +15,7 @@ const UserProfile = ({ user, token }) => {
   useEffect(() => {
     if (!token) return;
 
-    // ✅ FIX : utilise API_URL au lieu de localhost
+    //  FIX : utilise API_URL au lieu de localhost
     axios.get(`${API_URL}/orders/user`, {
       headers: { Authorization: `Bearer ${token}` }
     }).then(res => setOrders(res.data))
@@ -23,7 +23,7 @@ const UserProfile = ({ user, token }) => {
 
     const savedFavIds = JSON.parse(localStorage.getItem('favorites') || '[]');
     if (savedFavIds.length > 0) {
-      // ✅ FIX : utilise API_URL au lieu de localhost
+      //  FIX : utilise API_URL au lieu de localhost
       axios.post(`${API_URL}/products/get-by-ids`, { ids: savedFavIds })
         .then(res => setFavoritesData(res.data))
         .catch(err => console.error('Erreur favoris', err));
@@ -128,7 +128,7 @@ const UserProfile = ({ user, token }) => {
                   padding: '10px', background: colors.gray.light,
                   borderRadius: '12px',
                 }}>
-                  {/* ✅ FIX : utilise getImageUrl au lieu de localhost */}
+                  {/* FIX : utilise getImageUrl au lieu de localhost */}
                   <img
                     src={getImageUrl(product.image)}
                     alt={product.name}
