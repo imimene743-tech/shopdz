@@ -33,50 +33,63 @@ const ProductList = ({ onAddToCart }) => {
 
   const location = useLocation();
 
-  // 1. Fonction pour charger les produits (soit tous, soit via recherche)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
       const searchParams = new URLSearchParams(location.search);
       const searchQuery = searchParams.get('search');
 
-      let response;
+      let response; // On déclare la variable une seule fois ici
+
       if (searchQuery) {
-        // Appelle ta fonction searchProducts du backend
-        // Vérifie l'URL de ton API (ici j'utilise l'exemple standard)
-
-
-
-      
-      
-const response = await axios.get(`${API_URL}/products/search?search=${searchQuery}`);
-      
-      
-      
-      } 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      else {
-        // Appelle ta fonction getProducts habituelle
+        // CORRECTION : On retire le "const", on utilise la variable 'response' déclarée plus haut
+        response = await axios.get(`${API_URL}/products/search?search=${searchQuery}`);
+      } else {
         response = await getProducts();
       }
-      
-      setProducts(response.data);
+
+      // On vérifie que response existe avant d'accéder à .data
+      if (response && response.data) {
+        setProducts(response.data);
+      } else {
+        setProducts([]);
+      }
     } catch (error) {
       console.error('Erreur chargement produits:', error);
       toast.error('Erreur de connexion avec le serveur');
+      setProducts([]); // Sécurité : on vide la liste en cas d'erreur
     } finally {
       setLoading(false);
     }
   }, [location.search]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // 2. Initialisation et Refresh quand l'URL change
   useEffect(() => {
